@@ -1,27 +1,27 @@
-package pageobject.mail;
+package pageobject.CRM;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
-public class SettingsMail {
+public class Settings {
     public static WebDriver driver;
-    @BeforeEach
-    void setUp() {
+
+    @BeforeAll
+    static void setUp() {
         System.setProperty("webdriver.chrome.driver",
                 "src/main/resources/chromedriver.exe");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        MailPage mailPage = PageFactory.initElements(driver, MailPage.class);
     }
 
-    @AfterEach
-    void tearDown() {
+
+    @AfterAll
+    static void tearDown() {
         driver.quit();
     }
 }

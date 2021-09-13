@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 
 
-public class Mail extends SettingsMail{
+public class Mail extends SettingsMail {
 
     @Test
     public void emptyMailBox() {
@@ -14,7 +14,7 @@ public class Mail extends SettingsMail{
         mailPage.open();
         mailPage.login();
         mailPage.passwordPass();
-        Assertions.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Введите имя ящика')]")).isDisplayed());
+        Assertions.assertTrue(mailPage.emailError().isDisplayed());
     }
 
     @Test
@@ -27,7 +27,7 @@ public class Mail extends SettingsMail{
         mailPage.password();
         mailPage.passwordRemember();
         mailPage.enter();
-        Assertions.assertTrue(driver.findElement(By.xpath("//div[contains(text(),'Введите пароль')]")).isDisplayed());
+        Assertions.assertTrue(mailPage.passwordError().isDisplayed());
     }
 
     @Test
@@ -41,9 +41,9 @@ public class Mail extends SettingsMail{
         mailPage.passwordValue("mer1051051mer");
         mailPage.passwordRemember();
         mailPage.enter();
-        Assertions.assertTrue(driver.findElement(By.id("sideBarContent")).isDisplayed());
-        Assertions.assertTrue(driver.findElement(By.cssSelector("[href=\"/inbox/\"]")).isDisplayed());
-        Assertions.assertTrue(driver.findElement(By.cssSelector("[href=\"/inbox/\"]")).isEnabled());
+        Assertions.assertTrue(mailPage.sideBar().isDisplayed());
+        Assertions.assertTrue(mailPage.inbox().isDisplayed());
+        Assertions.assertTrue(mailPage.inbox().isEnabled());
     }
 
     @Test

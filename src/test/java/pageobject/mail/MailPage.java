@@ -1,5 +1,8 @@
 package pageobject.mail;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,7 +28,14 @@ public class MailPage {
 
     @FindBy(css = "[class=\"second-button svelte-1tib0qz\"]")
     private WebElement enter;
-
+    @FindBy(xpath = "//div[contains(text(),'Введите имя ящика')]")
+    private WebElement mailError;
+    @FindBy(xpath = "//div[contains(text(),'Введите пароль')]")
+    private WebElement passwordError;
+    @FindBy(id = "sideBarContent")
+    private WebElement sideBar;
+    @FindBy(css = "[href=\"/inbox/\"]")
+    private WebElement inbox;
 
     public void open() {
         driver.get("https://mail.ru/");
@@ -59,4 +69,20 @@ public class MailPage {
         enter.click();
     }
 
+    //Assertions
+    public WebElement emailError() {
+        return mailError;
+    }
+
+    public WebElement passwordError() {
+        return passwordError;
+    }
+
+    public WebElement sideBar() {
+        return sideBar;
+    }
+
+    public WebElement inbox() {
+        return inbox;
+    }
 }
