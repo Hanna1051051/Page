@@ -1,19 +1,33 @@
 package pageobject.CRM;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 
-public class CRMTest extends Settings {
+import java.util.concurrent.TimeUnit;
+
+public class CRMTest {
     public static CRMTestPage crmTestPage;
+    public static WebDriver driver;
+
 
     @BeforeEach
     void start() {
+        System.setProperty("webdriver.chrome.driver",
+                "src/main/resources/chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         crmTestPage = PageFactory.initElements(driver, CRMTestPage.class);
         crmTestPage.open()
                 .userName()
                 .password();
+    }
+
+    @AfterEach
+    void tearDown() {
+        driver.quit();
     }
 
     @Test
