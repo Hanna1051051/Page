@@ -35,6 +35,7 @@ public class MailPage {
     @FindBy(css = "[href=\"/inbox/\"]")
     private WebElement inbox;
 
+    @Step("Открытие сайта")
     public void open() {
         driver.get("https://mail.ru/");
     }
@@ -50,11 +51,13 @@ public class MailPage {
     public void passwordPass() {
         passwordPass.click();
     }
+
     @Step("Ввод логина {value}")
     public void loginValue(String value) {
         login.sendKeys(value);
     }
-    @Step ("Ввод пароля {value}")
+
+    @Step("Ввод пароля {value}")
     public void passwordValue(String value) {
         password.sendKeys(value);
     }
@@ -63,15 +66,18 @@ public class MailPage {
         passwordRemember.click();
     }
 
+    @Step("Подтверждение авторизации")
     public void enter() {
         enter.click();
     }
 
     //Assertions
+    @Step("Сообщение об ошибке")
     public WebElement emailError() {
         return mailError;
     }
 
+    @Step("Сообщение об ошибке")
     public WebElement passwordError() {
         return passwordError;
     }

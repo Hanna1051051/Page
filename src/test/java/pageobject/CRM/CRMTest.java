@@ -3,15 +3,15 @@ package pageobject.CRM;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
-import io.qameta.allure.Story;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
+
 import java.util.concurrent.TimeUnit;
 
-@Epic( "Тестирование сайта \"https://crm.geekbrains.space/user/login\"")
+@Epic("Тестирование сайта \"https://crm.geekbrains.space/user/login\"")
 @DisplayName("Site 'https://crm.geekbrains.space/user/login' ")
 
 public class CRMTest {
@@ -26,12 +26,14 @@ public class CRMTest {
         options.addArguments("--headless");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
         crmTestPage = PageFactory.initElements(driver, CRMTestPage.class);
         crmTestPage.open()
                 .userName()
                 .password();
     }
+
     @AfterEach
     void tearDown() {
         driver.quit();
@@ -39,7 +41,7 @@ public class CRMTest {
 
 
     @DisplayName("Создание проекта ")
-    @Severity(SeverityLevel.BLOCKER)
+    @Severity(SeverityLevel.CRITICAL)
     @Test
     public void crm1() {
         Assertions.assertEquals(crmTestPage.titleName(), ("Логин"));
@@ -62,7 +64,7 @@ public class CRMTest {
     }
 
     @DisplayName("Создание контактного лица")
-    @Severity(SeverityLevel.CRITICAL)
+    @Severity(SeverityLevel.NORMAL)
     @Test
     public void crm2() {
         crmTestPage.submit()

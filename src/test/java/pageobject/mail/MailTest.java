@@ -12,9 +12,9 @@ import org.openqa.selenium.support.PageFactory;
 public class MailTest extends SettingsMail {
 
 
-@DisplayName("Проверка на отображение ошибки - 'Введите имя ящика' ")
-@Story(value = "Сообщение об ошибке")
-@Severity(SeverityLevel.NORMAL)
+    @DisplayName("Проверка на отображение ошибки - 'Введите имя ящика' ")
+    @Story(value = "Сообщение об ошибке")
+    @Severity(SeverityLevel.NORMAL)
     @Test
     public void emptyMailBox() {
         MailPage mailPage = PageFactory.initElements(driver, MailPage.class);
@@ -54,10 +54,8 @@ public class MailTest extends SettingsMail {
         mailPage.passwordValue("mer1051051mer");
         mailPage.passwordRemember();
         mailPage.enter();
-//        Assertions.assertTrue(mailPage.sideBar().isDisplayed());
-//        Assertions.assertTrue(mailPage.inbox().isDisplayed());
-//        Assertions.assertTrue(mailPage.inbox().isEnabled());
     }
+
     @DisplayName("Проверка наличия разделов сайта")
     @Story(value = "Наполнение сайта")
     @Test

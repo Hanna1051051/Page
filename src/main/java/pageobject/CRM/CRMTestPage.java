@@ -16,7 +16,7 @@ public class CRMTestPage {
 
     public CRMTestPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
-        wait = new WebDriverWait(driver, 15);
+        wait = new WebDriverWait(driver, 25);
         this.driver = driver;
     }
 
