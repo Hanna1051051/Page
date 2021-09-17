@@ -1,17 +1,22 @@
 package pageobject.CRM;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CRMTestPage {
     private WebDriver driver;
+    private WebDriverWait wait;
 
     public CRMTestPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
+        wait = new WebDriverWait(driver, 15);
         this.driver = driver;
     }
 
@@ -68,21 +73,25 @@ public class CRMTestPage {
     private WebElement jobTitle;
 
     //Project
+    @Step("Open site")
     public CRMTestPage open() {
         driver.get("https://crm.geekbrains.space/user/login");
         return this;
     }
 
+    @Step("Fill in  user name")
     public CRMTestPage userName() {
         userName.sendKeys("Applanatest1");
         return this;
     }
 
+    @Step("Fill in password")
     public CRMTestPage password() {
         password.sendKeys("Student2020!");
         return this;
     }
 
+    @Step("Authorization")
     public CRMTestPage submit() {
         submit.click();
         return this;
@@ -98,7 +107,9 @@ public class CRMTestPage {
         return this;
     }
 
+    @Step("Create project")
     public CRMTestPage createProjectClick() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Создать проект")));
         createProject.click();
         return this;
     }
@@ -147,18 +158,21 @@ public class CRMTestPage {
         return this;
     }
 
+    @Step("Save the project")
     public CRMTestPage saveAndClose() {
         saveAndClose.click();
         return this;
     }
 
     //Contact
+    @Step("Open contacts")
     public CRMTestPage contrAgent() {
         contrAgent.click();
         person.click();
         return this;
     }
 
+    @Step("Fill in contact info {0} {1} {2}")
     public CRMTestPage createPerson(String lastName, String firstName, String title) {
         createPerson.click();
         contactLastName.sendKeys(lastName);
@@ -168,18 +182,19 @@ public class CRMTestPage {
     }
 
     //Assertions
+    @Step("Title verification")
     public String titleName() {
         return title.getText();
     }
-
+    @Step("Login verification")
     public String loginValue() {
         return userName.getAttribute("value");
     }
-
+    @Step("Password verification")
     public WebElement forgetPassword() {
         return forgetPassword;
     }
-
+    @Step("Button name verification")
     public String submitValue() {
         return submit.getText();
     }

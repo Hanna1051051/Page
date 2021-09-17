@@ -1,5 +1,6 @@
 package pageobject.mail;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,11 +50,11 @@ public class MailPage {
     public void passwordPass() {
         passwordPass.click();
     }
-
+    @Step("Ввод логина {value}")
     public void loginValue(String value) {
         login.sendKeys(value);
     }
-
+    @Step ("Ввод пароля {value}")
     public void passwordValue(String value) {
         password.sendKeys(value);
     }
